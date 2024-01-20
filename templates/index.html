@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title> Кинотеатр </title>
+    <link rel="stylesheet" href="static/css/style.css">
+    {% import "macros.html" as macros %}
+</head>
+<body>
+    <div class="menu">
+        {% include 'block-menu.html' %}
+    </div>
+    <div class="block_index">
+        <div class="filter">
+            {% include 'block-filter.html' %}
+        </div>
+        <div class="sessions">
+            {% set n = len(sessions) %}
+            {% for i in range(n) %}
+                {{ macros.render_session(sessions.loc[i], 0, int, len) }}
+            {% endfor %}
+
+            <script>
+                function redirect(session) {
+                    window.location.href = '/movie?id=' + session + '&category=0';
+                }
+            </script>
+        </div>
+    </div>
+</body>
+</html>

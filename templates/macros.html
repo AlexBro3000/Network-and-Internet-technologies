@@ -1,0 +1,132 @@
+﻿{% macro render_table(relation, len) %}
+    {% set n = len(relation) %}
+    <table>
+        <tr>
+            {% for name in relation.dtypes.index %}
+                <th>{{name}}</th>
+            {% endfor %}
+        </tr>
+        <tbody>
+            {% for i in range(n) %}
+                <tr>
+                    {% for name in relation.dtypes.index %}
+                        <td> {{ relation.loc[i, name] }} </td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endmacro %}
+
+{% macro render_select(title, name, default, relation, value, int, len) %}
+    {% set n = len(relation) %}
+    <label>
+        <b>{{ title }} ></b>
+        <br><br>
+        <select name="{{ name }}">
+            <option value="">{{ default }}</option>
+            {% for i in range(n) %}
+                {% if value and int(value) == int(relation.loc[i, "ID"]) %}
+                    <option selected value="{{ relation.loc[i, "ID"] }}">{{ relation.loc[i, "Title"] }}</option>
+                {% else %}
+                    <option value="{{ relation.loc[i, "ID"] }}">{{ relation.loc[i, "Title"] }}</option>
+                {% endif %}
+            {% endfor %}
+        </select>
+    </label>
+{% endmacro %}
+
+{% macro render_session(session, id, int, len) %}
+    <div class="session">
+        <div class="session_img">
+            <img src="static/images/{{ session.loc['img'] }}">
+        </div>
+        <div class="session_block">
+            <div class="session_data">
+                <h2> {{ session.loc['name'] }} ({{ session.loc['date'] }}) </h2>
+                <div class="line">
+                    <div style="width: 30%;">
+                        <h4>
+                            Режисер
+                        </h4>
+                        {{ session.loc['director'] }}
+                    </div>
+                    <div>
+                        <h4>
+                            Жанр >
+                        </h4>
+                        {{ session.loc['genre'] }}
+                    </div>
+                </div>
+                <h4>
+                    В ролях >
+                </h4>
+                <p>
+                    {{ session.loc['actor'] }}
+                </p>
+                <h4>
+                    Продолжительность
+                </h4>
+                <p>
+                    {{ session.loc['duration'] }} минут
+                </p>
+                <h4>
+                    Описание
+                </h4>
+                <p>
+                    {% if len(session.loc['description']) > 500 %}
+                        {{ session.loc['description'][:500] }}...
+                    {% else %}
+                        {{ session.loc['description'] }}
+                    {% endif %}
+                </p>
+                <h4>
+                    Рейтинг фильма
+                </h4>
+                <p>
+                    {{ session.loc['rating'] }} баллов
+                </p>
+            </div>
+            <div class="session_time">
+                <h3> Время показа: </h3>
+                <div class="line">
+                    {% set time = session.loc['time'][0][0] %}
+                    {% set n = len(time) %}
+                    {% for i in range(n) %}
+                        <div class="session_time_element {% if int(time[i][2]) == int(id) %}active{% endif %}" onclick="redirect('{{ time[i][2] }}')">
+                            <p> {{ time[i][0] }} / {{ time[i][1] }} </p>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endmacro %}
+
+{% macro render_ticket(ticket, int, len) %}
+    {% if int(ticket.loc['available_seats']) > 0 %}
+        <div title="{{ ticket.loc['description'] }}" class="ticket" onclick="redirect_ticket({{ ticket.loc['session'] }}, {{ ticket.loc['category'] }})">
+            <div>
+                <p> {{ ticket.loc['name'] }} </p>
+                <p> {{ ticket.loc['price'] }} руб. </p>
+            </div>
+            <div class="container">
+                <p>
+                    {{ ticket.loc['available_seats'] }} / {{ ticket.loc['number_seats'] }}
+                </p>
+            </div>
+        </div>
+    {% else %}
+        <div title="{{ ticket.loc['description'] }}" class="ticket active" >
+            <div>
+                <p> {{ ticket.loc['name'] }} </p>
+                <p> {{ ticket.loc['price'] }} руб. </p>
+            </div>
+            <div class="container">
+                <p>
+                    {{ ticket.loc['available_seats'] }} / {{ ticket.loc['number_seats'] }}
+                </p>
+            </div>
+        </div>
+    {% endif %}
+{% endmacro %}

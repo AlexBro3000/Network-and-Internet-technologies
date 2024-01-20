@@ -1,0 +1,11 @@
+<ul>
+    <li class="{% if current_page == 'index' %}active{% endif %}">
+        <a href={{ url_for("index") }}>Кинотеатр</a>
+    </li>
+
+    {% if current_page == 'movie' %}
+        <li class="active">
+            <a href={{ url_for("movie") }}>Фильм</a>
+        </li>
+    {% endif %}
+</ul>

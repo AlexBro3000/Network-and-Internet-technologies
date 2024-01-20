@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title> Кинотеатр </title>
+    <link rel="stylesheet" href="static/css/style.css">
+    {% import "macros.html" as macros %}
+</head>
+<body>
+    <div class="menu">
+        {% include 'block-menu.html' %}
+    </div>
+
+    <div class="block_movie">
+        {{ macros.render_session(session.loc[0], id, int, len) }}
+        <script>
+            function redirect(session) {
+                window.location.href = '/movie?id=' + session + '&category=0';
+            }
+        </script>
+
+        <div class="tickets">
+            <div>
+                <h2>{{ session.loc[0, 'hall'] }}</h2>
+            </div>
+            {% set n = len(ticket) %}
+            {% for i in range(n) %}
+                {{ macros.render_ticket(ticket.loc[i], int, len) }}
+            {% endfor %}
+        </div>
+        <script>
+            function redirect_ticket(session, category) {
+                window.location.href = '/movie?id=' + session + '&category=' + category;
+            }
+        </script>
+    </div>
+</body>
+</html>

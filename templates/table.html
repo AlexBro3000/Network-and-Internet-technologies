@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title> Таблицы </title>
+    <link rel="stylesheet" href="static/css/style.css">
+    {% import "macros.html" as macros %}
+</head>
+<body>
+    <div class="menu">
+        {% include 'block-menu.html' %}
+    </div>
+
+    {% for table in tables %}
+        <div>
+            <p>
+                <b>{{table["name"]}}</b>
+            </p>
+            {{ macros.render_table(table["table"], len) }}
+        </div>
+    {% endfor %}
+</body>
+</html>

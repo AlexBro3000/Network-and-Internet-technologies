@@ -1,0 +1,226 @@
+:root {
+    /* Основные цвета */
+    --main_color_1: #e30800; /* + */
+    --main_color_2: #eb4131; /* + */
+    --main_color_3: #eaea73; /* + */
+    --main_color_4: #f3f1db; /* + */
+    --main_color_5: #f2f0ec; /* + */
+    /* Темные цвета */
+    --dark_color_1: #060606; /* + */
+    --dark_color_2: #262a32; /* + */
+    --dark_color_3: #5a5e6d; /* + */
+    --dark_color_4: #989ab3; /* + */
+    --dark_color_5: #f8f8f8; /* + */
+    /* Дополнительные цвета */
+    --additional_color_1: #806db5;
+    --additional_color_2: #d36ea2;
+    --additional_color_3: #f6aea2;
+    --additional_color_4: #f8ecbf;
+    --additional_color_5: #f8efe7;
+}
+
+html {
+    font: 14px arial;
+    background-color: var(--main_color_5);
+}
+body {
+    max-width: 1200px;
+    width: 100%;
+    margin: auto;
+    box-sizing: border-box;
+    background-color: var(--dark_color_5);
+}
+p {
+    text-align: justify;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+a {
+    font-weight: bold;
+    font-size: calc(1em + 4px);
+    text-decoration: none;
+    color: #f8efe7;
+}
+
+div.menu {
+    display: flex;
+    flex-direction: row-reverse;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    width: 100%;
+    margin: 0;
+    background: var(--dark_color_1);
+}
+div.menu ul {
+    display: flex;
+    flex-direction: row-reverse;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+div.menu li {
+    margin: 20px 0 0 0;
+    padding: 15px 8px;
+}
+div.menu li:hover {
+    margin: 0 0 0 0;
+    padding: 35px 8px 15px 8px;
+    background: var(--dark_color_2);
+}
+div.menu li.active {
+    margin: 0 0 0 0;
+    padding: 35px 15px 15px 15px;
+    background: var(--main_color_1);
+}
+
+div.block_index {
+    display: grid;
+    grid-template-rows: max-content max-content;
+    grid-template-columns: 20% 80%;
+    width: 100%;
+    margin: auto;
+    box-sizing: border-box;
+}
+
+div.filter {
+    font: 15px arial;
+    padding: 10px 5px;
+    box-sizing: border-box;
+    background-color: var(--main_color_4);
+}
+div.filter div {
+    margin: 0 0 25px 0;
+    box-sizing: border-box;
+}
+div.filter select {
+    width: 100%;
+    margin: 0 0 5px 0;
+    box-sizing: border-box;
+}
+div.filter input {
+    width: 100%;
+    margin: 0 0 5px 0;
+    box-sizing: border-box;
+}
+
+div.sessions {
+    padding: 5px;
+    box-sizing: border-box;
+    background-color: var(--dark_color_5);
+}
+div.session {
+    display: flex;
+
+}
+div.session_img {
+    width: 320px;
+    padding: 10px;
+    box-sizing: border-box;
+}
+div.session_img img {
+    width: 300px;
+    border-radius: 4px;
+    box-sizing: border-box;
+    border: 1px solid var(--dark_color_3);
+}
+div.session_block {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+div.session_block div.line {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 0 0.5em 0;
+}
+div.session_block div.session_data {
+    width: 100%;
+
+}
+div.session_block div.session_data h2 {
+    margin: 0 0 1.5em 0;
+
+}
+div.session_block div.session_data h4 {
+    font-size: 15px;
+    margin: 0 0 0.3em 0;
+}
+div.session_block div.session_data > p {
+    margin: 0 0 0.5em 0;
+
+}
+
+div.session_block div.session_time {
+    width: 100%;
+
+}
+div.session_block div.session_time h3 {
+    margin: 0;
+
+}
+div.session_block div.session_time div div {
+    flex: 1 1 100px;
+    max-width: 160px;
+    margin: 10px 8px 0 0;
+    padding: 8px 5px;
+    border-radius: 4px;
+    box-sizing: border-box;
+    background: var(--dark_color_4);
+}
+div.session_block div.session_time div div p {
+    text-align: center;
+    font-weight: bold;
+    color: var(--dark_color_5);
+}
+div.session_block div.session_time div div:hover {
+    background: var(--dark_color_3);
+
+}
+div.session_block div.session_time div div.active {
+    background: var(--main_color_2);
+
+}
+
+div.tickets {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10px;
+}
+div.tickets div {
+    width: 100%;
+
+}
+div.tickets div h2 {
+    margin: 0 0 1.5em 0;
+
+}
+div.tickets div.ticket {
+    flex: 1 1 240px;
+    max-width: 360px;
+    display: flex;
+    margin: 5px;
+    padding: 5px;
+    border-radius: 5px;
+    font-weight: bold;
+    background: var(--main_color_3);
+}
+div.tickets div.ticket:hover {
+    background: var(--main_color_2);
+
+}
+div.tickets div.ticket.active {
+    background: var(--main_color_2);
+
+}
+div.tickets div.ticket div {
+    width: calc(100% - 80px);
+
+}
+div.tickets div.ticket .container {
+    width: 80px;
+
+}
+
+
+

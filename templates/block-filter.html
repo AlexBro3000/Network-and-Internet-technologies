@@ -1,0 +1,35 @@
+<form action="/" method="get">
+    <div>
+        <label>
+            <b>Поиск</b>
+            <br><br>
+            <input type="text" name="search_query" value="{{ data['search_query'] }}">
+        </label>
+    </div>
+    <div>
+        <p> <b>Диапозон дат</b> </p>
+        <br>
+        <p>
+            <label>От
+                <input type="date" name="start_date" value="{{ data['start_date'] }}" min="{{ data_limit['date'][0] }}" max="{{ data_limit['date'][1] }}" required>
+            </label>
+        </p>
+        <p>
+            <label>До
+                <input type="date" name="end_date"   value="{{ data['end_date'] }}" min="{{ data_limit['date'][0] }}" max="{{ data_limit['date'][1] }}" required>
+            </label>
+        </p>
+    </div>
+    <div>
+        {{ macros.render_select("Жанр", "genre", "Все жанры", genre, data['genre'], int, len) }}
+    </div>
+    <div>
+        {{ macros.render_select("Режиссер", "director", "Все режиссеры", director, data['director'], int, len) }}
+    </div>
+    <div>
+        {{ macros.render_select("В ролях", "actor", "Все актеры", actor, data['actor'], int, len) }}
+    </div>
+    <div>
+        <input type="submit" name="filter" value="Поиск">
+    </div>
+</form>
